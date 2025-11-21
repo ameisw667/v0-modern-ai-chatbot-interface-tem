@@ -121,12 +121,12 @@ export default function Sidebar({
         initial={{ width: 320 }}
         animate={{ width: 64 }}
         transition={{ type: "spring", stiffness: 260, damping: 28 }}
-        className="z-50 flex h-full shrink-0 flex-col border-r border-zinc-200/60 bg-white dark:border-zinc-800 dark:bg-zinc-900"
+        className="z-50 flex h-full shrink-0 flex-col glass-sidebar" // UPDATED CLASS
       >
-        <div className="flex items-center justify-center border-b border-zinc-200/60 px-3 py-3 dark:border-zinc-800">
+        <div className="flex items-center justify-center border-b border-white/10 px-3 py-3">
           <button
             onClick={() => setSidebarCollapsed(false)}
-            className="rounded-xl p-2 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:hover:bg-zinc-800"
+            className="glass-button rounded-xl p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             aria-label="Open sidebar"
             title="Open sidebar"
           >
@@ -137,7 +137,7 @@ export default function Sidebar({
         <div className="flex flex-col items-center gap-4 pt-4">
           <button
             onClick={createNewChat}
-            className="rounded-xl p-2 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:hover:bg-zinc-800"
+            className="glass-button rounded-xl p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             title="New Chat"
           >
             <Plus className="h-5 w-5" />
@@ -145,14 +145,14 @@ export default function Sidebar({
 
           <button
             onClick={() => setShowSearchModal(true)}
-            className="rounded-xl p-2 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:hover:bg-zinc-800"
+            className="glass-button rounded-xl p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             title="Search"
           >
             <SearchIcon className="h-5 w-5" />
           </button>
 
           <button
-            className="rounded-xl p-2 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:hover:bg-zinc-800"
+            className="glass-button rounded-xl p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             title="Folders"
           >
             <FolderIcon className="h-5 w-5" />
@@ -161,7 +161,7 @@ export default function Sidebar({
           <div className="mt-auto mb-4">
             <SettingsPopover>
               <button
-                className="rounded-xl p-2 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:hover:bg-zinc-800"
+                className="glass-button rounded-xl p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 title="Settings"
               >
                 <Settings className="h-5 w-5" />
@@ -197,13 +197,13 @@ export default function Sidebar({
             exit={{ x: -340 }}
             transition={{ type: "spring", stiffness: 260, damping: 28 }}
             className={cls(
-              "z-50 flex h-full w-80 shrink-0 flex-col border-r border-zinc-200/60 bg-white dark:border-zinc-800 dark:bg-zinc-900",
+              "z-50 flex h-full w-80 shrink-0 flex-col glass-sidebar", // UPDATED CLASS
               "fixed inset-y-0 left-0 md:static md:translate-x-0",
             )}
           >
-            <div className="flex items-center gap-2 border-b border-zinc-200/60 px-3 py-3 dark:border-zinc-800">
+            <div className="flex items-center gap-2 border-b border-white/10 px-3 py-3">
               <div className="flex items-center gap-2">
-                <div className="grid h-8 w-8 place-items-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 text-white shadow-sm dark:from-zinc-200 dark:to-zinc-300 dark:text-zinc-900">
+                <div className="grid h-8 w-8 place-items-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 text-white shadow-lg shadow-blue-500/20">
                   <Asterisk className="h-4 w-4" />
                 </div>
                 <div className="text-sm font-semibold tracking-tight">AI Assistant</div>
@@ -211,7 +211,7 @@ export default function Sidebar({
               <div className="ml-auto flex items-center gap-1">
                 <button
                   onClick={() => setSidebarCollapsed(true)}
-                  className="hidden md:block rounded-xl p-2 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:hover:bg-zinc-800"
+                  className="hidden md:block glass-button rounded-xl p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                   aria-label="Close sidebar"
                   title="Close sidebar"
                 >
@@ -220,7 +220,7 @@ export default function Sidebar({
 
                 <button
                   onClick={onClose}
-                  className="md:hidden rounded-xl p-2 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:hover:bg-zinc-800"
+                  className="md:hidden glass-button rounded-xl p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                   aria-label="Close sidebar"
                 >
                   <PanelLeftClose className="h-5 w-5" />
@@ -233,7 +233,7 @@ export default function Sidebar({
                 Search conversations
               </label>
               <div className="relative">
-                <SearchIcon className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+                <SearchIcon className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500 dark:text-zinc-400" />
                 <input
                   id="search"
                   ref={searchRef}
@@ -243,7 +243,7 @@ export default function Sidebar({
                   placeholder="Search…"
                   onClick={() => setShowSearchModal(true)}
                   onFocus={() => setShowSearchModal(true)}
-                  className="w-full rounded-full border border-zinc-200 bg-white py-2 pl-9 pr-3 text-sm outline-none ring-0 placeholder:text-zinc-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-zinc-800 dark:bg-zinc-950/50"
+                  className="w-full rounded-full border border-white/20 bg-white/40 dark:bg-black/20 py-2 pl-9 pr-3 text-sm outline-none ring-0 placeholder:text-zinc-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-white/10 backdrop-blur-sm"
                 />
               </div>
             </div>
@@ -251,22 +251,22 @@ export default function Sidebar({
             <div className="px-3 pt-3">
               <button
                 onClick={createNewChat}
-                className="flex w-full items-center justify-center gap-2 rounded-full bg-zinc-900 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:bg-white dark:text-zinc-900"
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-zinc-900/90 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-zinc-900/10 transition hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:bg-white/90 dark:text-zinc-900 dark:hover:bg-white"
                 title="New Chat (⌘N)"
               >
                 <Plus className="h-4 w-4" /> Start New Chat
               </button>
             </div>
 
-            <nav className="mt-4 flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto px-2 pb-4">
+            <nav className="mt-4 flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto px-2 pb-4 scrollbar-thin scrollbar-thumb-white/20">
               <SidebarSection
                 icon={<Star className="h-4 w-4" />}
-                title="PINNED CHATS" // Renamed from "PINNED CONVERSATIONS" to "PINNED CHATS"
+                title="PINNED CHATS"
                 collapsed={collapsed.pinned}
                 onToggle={() => setCollapsed((s) => ({ ...s, pinned: !s.pinned }))}
               >
                 {pinned.length === 0 ? (
-                  <div className="select-none rounded-lg border border-dashed border-zinc-200 px-3 py-3 text-center text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+                  <div className="select-none rounded-lg border border-dashed border-white/20 px-3 py-3 text-center text-xs text-zinc-500">
                     Pin important threads for quick access.
                   </div>
                 ) : (
@@ -289,7 +289,7 @@ export default function Sidebar({
                 onToggle={() => setCollapsed((s) => ({ ...s, recent: !s.recent }))}
               >
                 {recent.length === 0 ? (
-                  <div className="select-none rounded-lg border border-dashed border-zinc-200 px-3 py-3 text-center text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+                  <div className="select-none rounded-lg border border-dashed border-white/20 px-3 py-3 text-center text-xs text-zinc-500">
                     No conversations yet. Start a new one!
                   </div>
                 ) : (
@@ -315,7 +315,7 @@ export default function Sidebar({
                 <div className="-mx-1">
                   <button
                     onClick={() => setShowCreateFolderModal(true)}
-                    className="mb-2 inline-flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-sm text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                    className="mb-2 inline-flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-sm glass-button"
                   >
                     <Plus className="h-4 w-4" /> Create folder
                   </button>
@@ -337,7 +337,7 @@ export default function Sidebar({
               </SidebarSection>
 
               <SidebarSection
-                icon={<FileText className="h-4 w-4" />} // Replaced StarOff with FileText for better template metaphor
+                icon={<FileText className="h-4 w-4" />}
                 title="TEMPLATES"
                 collapsed={collapsed.templates}
                 onToggle={() => setCollapsed((s) => ({ ...s, templates: !s.templates }))}
@@ -345,7 +345,7 @@ export default function Sidebar({
                 <div className="-mx-1">
                   <button
                     onClick={() => setShowCreateTemplateModal(true)}
-                    className="mb-2 inline-flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-sm text-zinc-600 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-800"
+                    className="mb-2 inline-flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-sm glass-button"
                   >
                     <Plus className="h-4 w-4" /> Create template
                   </button>
@@ -362,7 +362,7 @@ export default function Sidebar({
                   ))}
 
                   {(!templates || templates.length === 0) && (
-                    <div className="select-none rounded-lg border border-dashed border-zinc-200 px-3 py-3 text-center text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+                    <div className="select-none rounded-lg border border-dashed border-white/20 px-3 py-3 text-center text-xs text-zinc-500">
                       No templates yet. Create your first prompt template.
                     </div>
                   )}
@@ -370,10 +370,10 @@ export default function Sidebar({
               </SidebarSection>
             </nav>
 
-            <div className="mt-auto border-t border-zinc-200/60 px-3 py-3 dark:border-zinc-800">
+            <div className="mt-auto border-t border-white/10 px-3 py-3">
               <div className="flex items-center gap-2">
                 <SettingsPopover>
-                  <button className="inline-flex items-center gap-2 rounded-lg px-2 py-2 text-sm hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:hover:bg-zinc-800">
+                  <button className="inline-flex items-center gap-2 rounded-lg px-2 py-2 text-sm glass-button">
                     <Settings className="h-4 w-4" /> Settings
                   </button>
                 </SettingsPopover>
@@ -381,8 +381,8 @@ export default function Sidebar({
                   <ThemeToggle theme={theme} setTheme={setTheme} />
                 </div>
               </div>
-              <div className="mt-2 flex items-center gap-2 rounded-xl bg-zinc-50 p-2 dark:bg-zinc-800/60">
-                <div className="grid h-8 w-8 place-items-center rounded-full bg-zinc-900 text-xs font-bold text-white dark:bg-white dark:text-zinc-900">
+              <div className="mt-2 flex items-center gap-2 rounded-xl bg-white/30 dark:bg-black/30 p-2 border border-white/10">
+                <div className="grid h-8 w-8 place-items-center rounded-full bg-zinc-900 text-xs font-bold text-white dark:bg-white dark:text-zinc-900 shadow-sm">
                   JD
                 </div>
                 <div className="min-w-0">
