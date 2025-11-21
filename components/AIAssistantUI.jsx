@@ -140,7 +140,7 @@ export default function AIAssistantUI() {
       preview: "Say hello to start...",
       pinned: false,
       folder: "Work Projects",
-      messages: [], // Ensure messages array is empty for new chats
+      messages: [], 
     }
     setConversations((prev) => [item, ...prev])
     setSelectedId(id)
@@ -178,7 +178,6 @@ export default function AIAssistantUI() {
 
     const currentConvId = convId
     setTimeout(() => {
-      // Always clear thinking state and generate response for this specific conversation
       setIsThinking(false)
       setThinkingConvId(null)
       setConversations((prev) =>
@@ -234,8 +233,6 @@ export default function AIAssistantUI() {
   }
 
   function handleUseTemplate(template) {
-    // This will be passed down to the Composer component
-    // The Composer will handle inserting the template content
     if (composerRef.current) {
       composerRef.current.insertTemplate(template.content)
     }
@@ -246,8 +243,18 @@ export default function AIAssistantUI() {
   const selected = conversations.find((c) => c.id === selectedId) || null
 
   return (
-    <div className="h-screen w-full bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
-      <div className="md:hidden sticky top-0 z-40 flex items-center gap-2 border-b border-zinc-200/60 bg-white/80 px-3 py-2 backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/70">
+    // Haupt-Container ohne feste Hintergrundfarbe, damit Liquid-BG sichtbar ist
+    <div className="relative h-screen w-full overflow-hidden text-zinc-900 dark:text-zinc-100">
+      
+      {/* Liquid Background Blobs */}
+      <div className="liquid-background">
+        <div className="liquid-blob top-0 -left-4 w-72 h-72 bg-[var(--blob-1)] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div className="liquid-blob top-0 -right-4 w-72 h-72 bg-[var(--blob-2)] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="liquid-blob -bottom-8 left-20 w-72 h-72 bg-[var(--blob-3)] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+      </div>
+
+      {/* Mobile Header */}
+      <div className="md:hidden sticky top-0 z-40 flex items-center gap-2 border-b border-white/20 bg-white/60 px-3 py-2 backdrop-blur-xl dark:border-white/10 dark:bg-black/60">
         <div className="ml-1 flex items-center gap-2 text-sm font-semibold tracking-tight">
           <span className="inline-flex h-4 w-4 items-center justify-center">✱</span> AI Assistant
         </div>
@@ -265,7 +272,7 @@ export default function AIAssistantUI() {
         </div>
       </div>
 
-      <div className="mx-auto flex h-[calc(100vh-0px)] max-w-[1400px]">
+      <div className="mx-auto flex h-[calc(100vh-0px)] max-w-[1600px] relative z-10">
         <Sidebar
           open={sidebarOpen}
           onClose={() => setSidebarOpen(false)}
