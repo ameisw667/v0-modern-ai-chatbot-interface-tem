@@ -15,23 +15,20 @@ const Composer = forwardRef(function Composer({ onSend, busy }, ref) {
   useEffect(() => {
     if (inputRef.current) {
       const textarea = inputRef.current
-      const lineHeight = 20 // Approximate line height in pixels
+      const lineHeight = 20 
       const minHeight = 40
 
-      // Reset height to calculate scroll height
       textarea.style.height = "auto"
       const scrollHeight = textarea.scrollHeight
-      const calculatedLines = Math.max(1, Math.floor((scrollHeight - 16) / lineHeight)) // 16px for padding
+      const calculatedLines = Math.max(1, Math.floor((scrollHeight - 16) / lineHeight))
 
       setLineCount(calculatedLines)
 
       if (calculatedLines <= 12) {
-        // Auto-expand for 1-12 lines
         textarea.style.height = `${Math.max(minHeight, scrollHeight)}px`
         textarea.style.overflowY = "hidden"
       } else {
-        // Fixed height with scroll for 12+ lines
-        textarea.style.height = `${minHeight + 11 * lineHeight}px` // 12 lines total
+        textarea.style.height = `${minHeight + 11 * lineHeight}px`
         textarea.style.overflowY = "auto"
       }
     }
@@ -70,14 +67,13 @@ const Composer = forwardRef(function Composer({ onSend, busy }, ref) {
     }
   }
 
-  const hasContent = value.length > 0
-
   return (
-    <div className="border-t border-zinc-200/60 p-4 dark:border-zinc-800">
+    <div className="border-t border-white/10 p-4">
       <div
         className={cls(
-          "mx-auto flex flex-col rounded-2xl border bg-white shadow-sm dark:bg-zinc-950 transition-all duration-200",
-          "max-w-3xl border-zinc-300 dark:border-zinc-700 p-3",
+          "mx-auto flex flex-col rounded-3xl glass-input transition-all duration-200",
+          "max-w-3xl p-3",
+          isFocused && "shadow-lg ring-1 ring-white/20 dark:ring-white/10"
         )}
       >
         <div className="flex-1 relative">
@@ -90,7 +86,7 @@ const Composer = forwardRef(function Composer({ onSend, busy }, ref) {
             placeholder="How can I help you today?"
             rows={1}
             className={cls(
-              "w-full resize-none bg-transparent text-sm outline-none placeholder:text-zinc-400 transition-all duration-200",
+              "w-full resize-none bg-transparent text-sm outline-none placeholder:text-zinc-500 dark:placeholder:text-zinc-400 transition-all duration-200",
               "px-0 py-2 min-h-[40px] text-left",
             )}
             style={{
@@ -109,7 +105,7 @@ const Composer = forwardRef(function Composer({ onSend, busy }, ref) {
         <div className="flex items-center justify-between mt-2">
           <ComposerActionsPopover>
             <button
-              className="inline-flex shrink-0 items-center justify-center rounded-full p-2 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-300 transition-colors"
+              className="inline-flex shrink-0 items-center justify-center rounded-full p-2 text-zinc-500 hover:bg-black/5 hover:text-zinc-700 dark:text-zinc-400 dark:hover:bg-white/10 dark:hover:text-zinc-300 transition-colors"
               title="Add attachment"
             >
               <Plus className="h-4 w-4" />
@@ -118,7 +114,7 @@ const Composer = forwardRef(function Composer({ onSend, busy }, ref) {
 
           <div className="flex items-center gap-1 shrink-0">
             <button
-              className="inline-flex items-center justify-center rounded-full p-2 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-300 transition-colors"
+              className="inline-flex items-center justify-center rounded-full p-2 text-zinc-500 hover:bg-black/5 hover:text-zinc-700 dark:text-zinc-400 dark:hover:bg-white/10 dark:hover:text-zinc-300 transition-colors"
               title="Voice input"
             >
               <Mic className="h-4 w-4" />
@@ -127,7 +123,7 @@ const Composer = forwardRef(function Composer({ onSend, busy }, ref) {
               onClick={handleSend}
               disabled={sending || busy || !value.trim()}
               className={cls(
-                "inline-flex shrink-0 items-center gap-2 rounded-full bg-zinc-900 px-3 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:bg-white dark:text-zinc-900",
+                "inline-flex shrink-0 items-center gap-2 rounded-full bg-zinc-900 px-3 py-2 text-sm font-medium text-white shadow-lg shadow-zinc-900/20 transition hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:bg-white dark:text-zinc-900 dark:hover:bg-gray-200",
                 (sending || busy || !value.trim()) && "opacity-50 cursor-not-allowed",
               )}
             >
@@ -137,20 +133,8 @@ const Composer = forwardRef(function Composer({ onSend, busy }, ref) {
         </div>
       </div>
 
-      <div className="mx-auto mt-2 max-w-3xl px-1 text-[11px] text-zinc-500 dark:text-zinc-400">
-        Press{" "}
-        <kbd className="rounded border border-zinc-300 bg-zinc-50 px-1 dark:border-zinc-600 dark:bg-zinc-800">
-          Enter
-        </kbd>{" "}
-        to send ·{" "}
-        <kbd className="rounded border border-zinc-300 bg-zinc-50 px-1 dark:border-zinc-600 dark:bg-zinc-800">
-          Shift
-        </kbd>
-        +
-        <kbd className="rounded border border-zinc-300 bg-zinc-50 px-1 dark:border-zinc-600 dark:bg-zinc-800">
-          Enter
-        </kbd>{" "}
-        for newline
+      <div className="mx-auto mt-2 max-w-3xl px-1 text-[11px] text-zinc-500 dark:text-zinc-400 text-center opacity-60">
+        Press Enter to send · Shift + Enter for newline
       </div>
     </div>
   )
