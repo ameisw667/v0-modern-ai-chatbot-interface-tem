@@ -203,10 +203,12 @@ export default function Sidebar({
           >
             <div className="flex items-center gap-2 border-b border-white/10 px-3 py-3">
               <div className="flex items-center gap-2">
-                <div className="grid h-8 w-8 place-items-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 text-white shadow-lg shadow-blue-500/20">
-                  <Asterisk className="h-4 w-4" />
-                </div>
-                <div className="text-sm font-semibold tracking-tight">AI Assistant</div>
+                <img 
+                  src="/LOGO-removebg-preview.png" 
+                  alt="Super KI Logo" 
+                  className="h-12 w-12 object-contain" 
+                />
+                <div className="text-sm font-semibold tracking-tight">Smarta AI</div>
               </div>
               <div className="ml-auto flex items-center gap-1">
                 <button

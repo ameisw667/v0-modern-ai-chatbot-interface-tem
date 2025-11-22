@@ -1,0 +1,8 @@
+# Wichtigste Zeile:
+node_modules
+/node_modules
+
+# Systemdateien
+.next
+.env.local
+.DS_Store
